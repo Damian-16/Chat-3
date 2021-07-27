@@ -6,12 +6,15 @@ import {ChatContext} from './context/ChatProvider';
 function App() {
 
   const {saludo} = React.useContext(ChatContext)
-  return (
+  const {usuario} = React.useContext(ChatContext)
+  return usuario !== null?(
     <div>
       <Navbar/>
-   hola {saludo}
+   hola 
     </div>
-  );
+  ):(
+    <div>CARGANDOOOO</div>
+  )
 }
 
 export default App;

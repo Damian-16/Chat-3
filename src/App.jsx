@@ -1,4 +1,5 @@
 import React, { PureComponent } from 'react';
+import Chat from './component/Chat';
 import Navbar from './component/Navbar';
 import {ChatContext} from './context/ChatProvider';
 
@@ -10,7 +11,15 @@ function App() {
   return usuario !== null?(
     <div>
       <Navbar/>
-   hola 
+      {
+        usuario.estado?(
+          <Chat/>
+        ):(
+          <div className="lead text-center mt-5">
+            Debes Iniciar Sesion
+          </div>
+        )
+      }
     </div>
   ):(
     <div>CARGANDOOOO</div>

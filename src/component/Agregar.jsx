@@ -1,12 +1,31 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { ChatContext } from '../context/ChatProvider'
+
 
 const Agregar = () => {
+
+ const {agregarMensajes,usuario} = React.useContext(ChatContext)
+ const [mensaje, setMensaje] = useState('')
+ const agregar = (e) => {
+     e.preventDefault()
+     if(!mensaje.trim()){
+         console.log("viene vacio")
+         return
+     }
+     agregarMensajes(usuario.uid,mensaje)
+     setMensaje('')
+ }
+
+
     return (
         <form 
+        onSubmit={agregar}
         className="fixed-bottom input-group p-3 bg-dark"
         ><input 
         type="text"
-        className="form-control"/>
+        className="form-control"
+        value={mensaje}
+        onChange={e => setMensaje(e.target.value)}/>
         <div className="input-group-append">
             <button
             className="btn btn-primary"

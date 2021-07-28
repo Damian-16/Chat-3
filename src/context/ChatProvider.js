@@ -14,7 +14,9 @@ export const ChatProvider = (props) => {
     })
     const [mensajes, setMensajes] = useState([])
     React.useEffect(()=>{
+        
       detectarUsuario()
+      // eslint-disable-next-line react-hooks/exhaustive-deps
     } ,[])
     const detectarUsuario=()=>{
     
@@ -41,7 +43,7 @@ export const ChatProvider = (props) => {
         auth.signOut()
     }
     const cargarMensajes =() =>{
-        db.collection('chat')
+        db.collection('chat').orderBy('fecha')
         .onSnapshot(query =>{ //snapshot actualiza en tiempo real los mensajes
            const arrayMensajes=  query.docs.map(item=>item.data())//nuestro recorrido
            setMensajes(arrayMensajes)//esto empuja los mensajes al estado de mensajes
